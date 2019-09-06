@@ -3,8 +3,8 @@ from .models import Chest_Pain
 
 ch = [('days','Days'),('months','Months'),('years','Years')]
 ch2 = [('seconds','Seconds'), ('minutes','Minutes'),('hours','Hours'),('days','Days'),('months','Months'),('years','Years')]
-d = [('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10'),
-('11','11'),('12','12'),('13','13'),('14','14'),('15','15'),('16','16'),('17','17'),('18','18'),('19','19'),('20','20')]
+d = [('<1','<1'),('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10'),
+('11','11'),('12','12'),('13','13'),('14','14'),('15','15'),('16','16'),('17','17'),('18','18'),('19','19'),('20','20'),('>20','>20')]
 q = (
         ('abrupt_onset','Abrupt Onset'),
         ('aching_dull','Aching/Dull'),
@@ -117,6 +117,39 @@ p_exam = (
     ('wheezes','Wheezes'),
 )
 
+wor_with = (
+    ('burping','Burping'),
+    ('eating','Eating'),
+    ('exertion','Exertion'),
+    ('lying_down','Lying Down'),
+    ('nitro','Nitro'),
+    ('palpation','Palpation'),
+    ('resting','Resting'),
+    ('sitting_up','Sitting up'),
+    ('spicy_food','Spicy Food'),
+    ('taking_breath','Taking a deep breath'),
+    ('walking','Walking'),
+
+)
+
+imp_with = (
+    ('burping','Burping'),
+    ('eating','Eating'),
+    ('exertion','Exertion'),
+    ('lying_down','Lying Down'),
+    ('nitro','Nitro'),
+    ('palpation','Palpation'),
+    ('resting','Resting'),
+    ('sitting_up','Sitting up'),
+    ('spicy_food','Spicy Food'),
+    ('taking_breath','Taking a deep breath'),
+    ('walking','Walking'),
+
+)
+
+
+
+
 class ChestPainForm(forms.ModelForm):
     age = forms.CharField(label='Age',widget=forms.TextInput(attrs={'type':'number','min':1,'max':88}))
     t = forms.ChoiceField(label='time unit', choices=ch , widget=forms.Select(choices=ch, attrs={'name':'t'}))
@@ -129,7 +162,8 @@ class ChestPainForm(forms.ModelForm):
     medication = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=mdctn)
     family_and_social_hx = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=fmly_n_social)
     physical_exam = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=p_exam)
-
+    worsens_with = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=wor_with)
+    improves_with = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=imp_with)
 
 
 
