@@ -4,7 +4,26 @@ from django.db import models
 
 
 class Chest_Pain(models.Model):
-    
+    t = (
+        ('d','Days'),
+        ('m','Months'),
+        ('y','Years'),
+    )
+
+    rc = (
+        ('white','White'),
+        ('black','Black or African American'),
+        ('american_indian','American Indian or Alaska Native'),
+        ('asian','Asian'),
+        ('native_hawaiian','Native Hawaiian or Other Pacific Islander'),
+        ('some_other','Some Other Race'),
+    )
+
+    sx = (
+        ('m','Male'),
+        ('f','Female'),
+    )
+
 
     q = (
         ('abrupt_onset','Abrupt Onset'),
@@ -170,29 +189,71 @@ class Chest_Pain(models.Model):
         ('high','High'),
 
     )
+    pls = (
+        ('<60','<60'),
+        ('61-100','61-100'),
+        ('101-120','101-120'),
+        ('121-150','121-150'),
+        ('>150','>150'),
 
+    )
+
+    bp_sys = (
+        ('<60','<60'),
+        ('60-89','60-89'),
+        ('90-120','90-120'),
+        ('121-139','121-139'),
+        ('140-179','140-179'),
+        ('180-220','180-220'),
+        ('>220','>220'),
+    )
+
+    bp_dias = (
+        ('<41','<41'),
+        ('41-60','41-60'),
+        ('61-80','61-80'),
+        ('81-90','81-90'),
+        ('91-100','91-100'),
+        ('>100','>100'),
+    )
+
+    pls_ox = (
+        ('<90','<90'),
+        ('90-94','90-94'),
+        ('94-100','94-100'),
+    )
+
+    tmp = (
+        ('<=95(35)','<=95(35)'),
+        ('95.1-97.7(35.1-36.5)','95.1 - 97.7 (35.1 - 36.5)'),
+        ('97.8-99.4(36.5-37.4)','97.8 -99.4 (36.5-37.4)'),
+        ('99.5-100.3(37.6-37.9)','99.5 - 100.3 (37.6 - 37.9)'),
+        ('100.5-101.9(38.0-38.9)','100.5 - 101.9 (38.0 - 38.9)'),
+        ('>=102(>=38.9)','>=102 (>=38.9)')
+
+    )
 
 
     age = models.CharField(max_length=100)
-    race = models.CharField(max_length=100)
-    sex = models.CharField(max_length=100)
-    quality = models.CharField(max_length=100, choices=q)
+    race = models.CharField(max_length=100, choices=rc)
+    sex = models.CharField(max_length=100, choices=sx)
+    quality = models.CharField(max_length=1000)
     intensity = models.CharField(max_length=200, choices=intns)
     duration = models.CharField(max_length=200)
-    associated_symptoms = models.CharField(max_length=1000, choices= assc_symptoms)
-    similar_to_prior = models.CharField(max_length=200,choices=s_to_p)
+    associated_symptoms = models.CharField(max_length=1000)
+    similar_to_prior = models.CharField(max_length=200)
     worsens_with = models.CharField(max_length=2000, choices=wor_with)
     improves_with = models.CharField(max_length=2000, choices=imp_with)
-    past_medical_history_of = models.CharField(max_length=200, choices=past_mhistory)
-    medication = models.CharField(max_length=200, choices=mdctn)
-    family_and_social_hx = models.CharField(max_length=200, choices=fmly_n_social)
+    past_medical_history_of = models.CharField(max_length=200)
+    medication = models.CharField(max_length=200)
+    family_and_social_hx = models.CharField(max_length=200)
     #vitals = models.CharField(max_length=1000)
-    pulse = models.CharField(max_length=1000)
-    systolic_blood_pressure = models.CharField(max_length=1000)
-    diastolic_blood_pressure = models.CharField(max_length=1000)
-    pulse_oximetry = models.CharField(max_length=1000)
-    temperature = models.CharField(max_length=1000)
-    physical_exam = models.CharField(max_length=1000, choices=p_exam)
+    pulse = models.CharField(max_length=1000,choices=pls)
+    systolic_blood_pressure = models.CharField(max_length=1000,choices=bp_sys)
+    diastolic_blood_pressure = models.CharField(max_length=1000,choices=bp_dias)
+    pulse_oximetry = models.CharField(max_length=1000,choices=pls_ox)
+    temperature = models.CharField(max_length=1000,choices=tmp)
+    physical_exam = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.age

@@ -7,10 +7,18 @@ from .forms import ChestPainForm
 def home(request):
     if request.method=='POST':
         chest_pain_form = ChestPainForm(request.POST)
+        t = request.POST.get('t')
+        tt = request.POST.get('tt')
+        print('t',t,'tt',tt)
         if chest_pain_form.is_valid():
-            chest_pain_form.save()
+            b = chest_pain_form.save()
+            b.age = b.age + " " + str(t)
+            b.duration = b.duration + " " + str(tt)
+            b.save()
+
             return HttpResponse("Form is submitted.")
         else:
+            print(chest_pain_form.errors)
             return HttpResponse("Fill the form properly.")
     chest_pain_form = ChestPainForm()
     return render(request, 'ind.html',{'chest_pain_form':chest_pain_form})
