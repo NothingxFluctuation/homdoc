@@ -65,14 +65,14 @@ s_to_p = (
 past_mhistory = (
     ('asthma','Asthma'),
     ('autoimmune','Autoimmune'),
-    ('copd','COPD'),
+    ('COPD','COPD'),
     ('diabetes_mellitus','Diabetes Mellitus'),
     ('gastroesophageal_reflux_disease','Gastroesophageal Reflux Disease'),
     ('hypertension','Hypertension'),
-    ('known_cad','Known CAD (stenosis ≥50%)'),
+    ('known_CAD(stenosis≥50%)','Known CAD (stenosis ≥50%)'),
     ('known_thoracic_aortic_aneurysm','Known thoracic aortic aneurysm'),
     ('liver_disease','Liver Disease'),
-    ('low_hdl_cholestrol','Low HDL Cholesterol (<40 mg/dl)'),
+    ('low_hdl_cholestrol(<40mg/dl)','Low HDL Cholesterol (<40 mg/dl)'),
     ('marfan_syndrome','Marfan Syndrome'),
     ('presence_of_malignancy','Presence of Malignancy'),
     ('prior_history_of_dvt_or_pulmonary_embolism','Prior history of DVT or pulmonary embolism'),
@@ -96,22 +96,22 @@ mdctn = (
 )
 
 fmly_n_social = (
-    ('aortic_disease','Family History of Aortic Disease'),
-    ('premature_cad','Family History of Premature CAD'),
+    ('family_history_of_aortic_disease','Family History of Aortic Disease'),
+    ('family_history_of_premature_cad','Family History of Premature CAD'),
     ('smoker','Smoker'),
 )
 
 p_exam = (
     ('decreased_breath_sounds','Decreased Breath Sounds'),
-    ('evidence_of_perfusion',"Evidence of perfusion deficit (pulse deficit, systolic BP differential, or focal neurological deficit in conjunction with pain)"),
+    ('evidence_of_perfusion_deficit',"Evidence of perfusion deficit (pulse deficit, systolic BP differential, or focal neurological deficit in conjunction with pain)"),
     ('hypotension_or_shockstate','Hypotension or Shock State'),
     ('irregular_heart_beat','Irregular Heart Beat'),
-    ('murmur_of_aortic','New murmur of aortic insufficiency (with pain)'),
+    ('murmur_of_aortic_insufficiency(with_pain)','New murmur of aortic insufficiency (with pain)'),
     ('pain_at_epigastric','Pain at Epigastric'),
     ('pericardial_friction_rub','Pericardial friction rub'),
     ('rales','Rales'),
     ('rash','Rash'),
-    ('chest_wall_tenderness','Reproducible chest wall tenderness'),
+    ('reproducible_chest_wall_tenderness','Reproducible chest wall tenderness'),
     ('rhonchi','Rhonchi'),
     ('unilateral_leg_swelling','Unilateral Leg Swelling'),
     ('wheezes','Wheezes'),
