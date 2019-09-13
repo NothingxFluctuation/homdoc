@@ -25,7 +25,7 @@ SECRET_KEY = 'n#rzel-1(se^o)d3szv)r(k-3eslr$m991smm0j3#w-w0)r0)e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','homdoc.pythonanywhere.com']
 
 
 # Application definition

@@ -20,7 +20,8 @@ def home(request):
         else:
             print(chest_pain_form.errors)
             return HttpResponse("Fill the form properly.")
-    chest_pain_form = ChestPainForm()
+    
+    chest_pain_form = ChestPainForm(initial={'ch':'years','ch2':'hours'})
     return render(request, 'ind.html',{'chest_pain_form':chest_pain_form})
 
 

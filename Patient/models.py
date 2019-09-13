@@ -4,24 +4,20 @@ from django.db import models
 
 
 class Chest_Pain(models.Model):
-    t = (
-        ('d','Days'),
-        ('m','Months'),
-        ('y','Years'),
-    )
+    
 
     rc = (
-        ('white','White'),
-        ('black','Black or African American'),
-        ('american_indian','American Indian or Alaska Native'),
-        ('asian','Asian'),
-        ('native_hawaiian','Native Hawaiian or Other Pacific Islander'),
-        ('some_other','Some Other Race'),
+        ('White','White'),
+        ('Black or African American','Black or African American'),
+        ('American Indian or Alaska Native','American Indian or Alaska Native'),
+        ('Asian','Asian'),
+        ('Native Hawaiian or Other Pacific Islander','Native Hawaiian or Other Pacific Islander'),
+        ('Some Other Race','Some Other Race'),
     )
 
     sx = (
-        ('m','Male'),
-        ('f','Female'),
+        ('Male','Male'),
+        ('Female','Female'),
     )
 
 
@@ -39,14 +35,14 @@ class Chest_Pain(models.Model):
     )
 
     l = (
-        ('right','Right'),
-        ('left','Left'),
-        ('middle','Middle'),
-        ('upper','Upper'),
-        ('lower','Lower'),
-        ('bilateral','Bilateral'),
-        ('flank','Flank'),
-        ('back','Back'),
+        ('Right','Right'),
+        ('Left','Left'),
+        ('Middle','Middle'),
+        ('Upper','Upper'),
+        ('Lower','Lower'),
+        ('Bilateral','Bilateral'),
+        ('Flank','Flank'),
+        ('Back','Back'),
     )
     s_to_p = (
         ('aortic_dissection','Aortic Dissection'),
@@ -184,9 +180,9 @@ class Chest_Pain(models.Model):
     )
 
     intns = (
-        ('low','Low'),
-        ('medium','Medium'),
-        ('high','High'),
+        ('Low','Low'),
+        ('Medium','Medium'),
+        ('High','High'),
 
     )
     pls = (
@@ -236,7 +232,7 @@ class Chest_Pain(models.Model):
 
     age = models.CharField(max_length=100)
     race = models.CharField(max_length=100, choices=rc, null=True, blank=True)
-    sex = models.CharField(max_length=100, choices=sx)
+    sex = models.CharField(max_length=100, choices=sx, null=True, blank=True)
     quality = models.CharField(max_length=1000, null=True, blank=True)
     intensity = models.CharField(max_length=200, choices=intns, null=True, blank=True)
     duration = models.CharField(max_length=200, null=True, blank=True)
