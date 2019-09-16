@@ -1,5 +1,6 @@
 from django import forms
 from .models import Chest_Pain
+from django.contrib.auth.models import User
 
 ch = [('days','Days'),('months','Months'),('years','Years')]
 ch2 = [('seconds','Seconds'), ('minutes','Minutes'),('hours','Hours'),('days','Days'),('months','Months'),('years','Years')]
@@ -63,16 +64,16 @@ s_to_p = (
 )
 
 past_mhistory = (
-    ('asthma','Asthma'),
-    ('autoimmune','Autoimmune'),
+    ('Asthma','Asthma'),
+    ('Autoimmune','Autoimmune'),
     ('COPD','COPD'),
-    ('diabetes_mellitus','Diabetes Mellitus'),
-    ('gastroesophageal_reflux_disease','Gastroesophageal Reflux Disease'),
-    ('hypertension','Hypertension'),
-    ('known_CAD(stenosis≥50%)','Known CAD (stenosis ≥50%)'),
-    ('known_thoracic_aortic_aneurysm','Known thoracic aortic aneurysm'),
-    ('liver_disease','Liver Disease'),
-    ('low_hdl_cholestrol(<40mg/dl)','Low HDL Cholesterol (<40 mg/dl)'),
+    ('Diabetes Mellitus','Diabetes Mellitus'),
+    ('Gastroesophageal Reflux Disease','Gastroesophageal Reflux Disease'),
+    ('Hypertension','Hypertension'),
+    ('Known CAD (stenosis ≥50%)','Known CAD (stenosis ≥50%)'),
+    ('Known thoracic aortic aneurysm','Known thoracic aortic aneurysm'),
+    ('Liver Disease','Liver Disease'),
+    ('Low HDL Cholesterol (<40 mg/dl)','Low HDL Cholesterol (<40 mg/dl)'),
     ('Marfan Syndrome','Marfan Syndrome'),
     ('Presence of Malignancy','Presence of Malignancy'),
     ('Prior history of DVT or pulmonary embolism','Prior history of DVT or pulmonary embolism'),
@@ -164,6 +165,8 @@ class ChestPainForm(forms.ModelForm):
     physical_exam = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=p_exam,required=False)
     worsens_with = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=wor_with,required=False)
     improves_with = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=imp_with, required=False)
+    more = forms.CharField(label="", required=False, widget=forms.Textarea(attrs={'placeholder':'Please share any other information that you want (optional)'}))
+    
 
 
 
@@ -175,7 +178,7 @@ class ChestPainForm(forms.ModelForm):
         model = Chest_Pain
         fields = ('age','t','race','sex','quality','intensity','duration','tt','associated_symptoms','similar_to_prior',
         'worsens_with','improves_with','past_medical_history_of','medication','family_and_social_hx',
-        'pulse','systolic_blood_pressure','diastolic_blood_pressure','pulse_oximetry','temperature','physical_exam')
+        'pulse','systolic_blood_pressure','diastolic_blood_pressure','pulse_oximetry','temperature','physical_exam','more')
 
         labels = {
             "temperature": ("Temperature °F (°C)"),
@@ -183,3 +186,25 @@ class ChestPainForm(forms.ModelForm):
             "systolic_blood_pressure":("Systolic Blood Pressure (mm Hg)(60-220)"),
             "diastolic_blood_pressure":("Diastolic Blood Pressure(mm Hg)(41-100)"),
         }
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label=' ', widget=forms.TextInput(attrs={'maxlength':150, 'placeholder':'Email'}))
+    password = forms.CharField(label=' ',widget=forms.PasswordInput(attrs={'maxlength':150,'placeholder':'Password'}))
+
+
+class RegistrationForm(forms.ModelForm):
+    password = forms.CharField(label=' ',widget= forms.PasswordInput(attrs={'maxlength':150,'placeholder':'Password'}))
+    email = forms.EmailField(label=' ',required=True, widget=forms.EmailInput(attrs={'maxlength':150,'placeholder':'Email'}))
+    first_name = forms.CharField(label=' ',widget=forms.TextInput(attrs={'maxlength':150,'placeholder':'First Name'}))
+    last_name = forms.CharField(label = ' ',widget=forms.TextInput(attrs={'maxlength':150,'placeholder':'Last Name'}))
+    #username = forms.CharField(label=' ',widget=forms.TextInput(attrs={'maxlength':150,'placeholder':'Username'}))
+
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','email')
+
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','email')

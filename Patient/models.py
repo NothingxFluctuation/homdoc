@@ -1,6 +1,31 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
+
+
+
+class Patient(models.Model):
+    u = models.ForeignKey(User, related_name='p_info',on_delete=models.CASCADE)
+    dob = models.DateTimeField(null=True, blank = True)
+    joined = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.u.username
+
+
+
+class Physician(models.Model):
+    u = models.ForeignKey(User, related_name='ph_info',on_delete=models.CASCADE)
+    dob = models.DateTimeField(null=True, blank = True)
+    joined = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.u.username
+    
+
+
 
 
 class Chest_Pain(models.Model):
@@ -229,7 +254,7 @@ class Chest_Pain(models.Model):
 
     )
 
-
+    patient = models.ForeignKey(Patient, related_name='diseases',on_delete=models.CASCADE, null=True,blank=True)
     age = models.CharField(max_length=100)
     race = models.CharField(max_length=100, choices=rc, null=True, blank=True)
     sex = models.CharField(max_length=100, choices=sx, null=True, blank=True)
@@ -250,8 +275,13 @@ class Chest_Pain(models.Model):
     pulse_oximetry = models.CharField(max_length=1000,choices=pls_ox, null=True, blank=True)
     temperature = models.CharField(max_length=1000,choices=tmp, null=True, blank=True)
     physical_exam = models.CharField(max_length=1000, null=True, blank=True)
+    more = models.TextField(max_length=5000, null=True, blank = True)
+    created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.age
+
+
+
 
 

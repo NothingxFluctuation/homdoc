@@ -14,14 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 import Patient.views as p_views
 
 
 urlpatterns = [
     path('',p_views.home, name='home'),
+    path('login/',p_views.user_login, name='login'),
+    path('logout/',p_views.user_login, name='logout'), 
+    path('register/',p_views.user_registration, name='register'),
+    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', p_views.activate_account, name='activate'),
+    path('edit/',p_views.edit, name='edit'),
 
-
+    path('my_submissions/',p_views.submissions, name='my_submissions'),
 
 
     path('admin/', admin.site.urls),

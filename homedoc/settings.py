@@ -16,6 +16,16 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
+from django.urls import reverse_lazy
+
+LOGIN_REDIRECT_URL=reverse_lazy('dashboard')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL= reverse_lazy('logout')
+
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -120,3 +130,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'erebbitmail@gmail.com'
+SERVER_EMAIL = 'erebbitmail@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'erebbitmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'merypeerdijugni'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

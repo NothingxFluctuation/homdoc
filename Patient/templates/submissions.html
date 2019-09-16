@@ -1,0 +1,313 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>HomDoc</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">HomDoc</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'my_submissions' ">My Submissions</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'edit' %}">Edit Profile</a>
+            </li>
+          
+          <li class="nav-item">
+              {% if request.user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              {% endif %}
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <br>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/">Home</a>
+      </li>
+      <li class="breadcrumb-item active">My Submissions</li>
+    </ol>
+
+
+
+    <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                           
+                            <div class="col-md-6">
+                                <p>{{role}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.get_full_name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Registered</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{request.user.date_joined|date}}</p>
+                            </div>
+                        </div>
+                        
+            </div>
+            
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 style = color:blue> <b>My Submissions</b></h3>
+    <hr>
+    
+    {% for sub in submissions %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                  <label>Age</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{sub.age}}</p>
+                </div>   
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Race</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{sub.race}}</p>
+              </div>   
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Sex</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{sub.sex}}</p>
+            </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Quality</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.quality}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Intensity</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.intensity}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Duration</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.duration}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Associated Symptoms</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.associated_symptoms}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Similar to Prior</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.similar_to_prior}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Worsens with</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.worsens_with}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Improves with</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.improves_with}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Past Medical History of</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.past_medical_history_of}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Medication</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.medication}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Family and Social History</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.family_and_social_hx}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Pulse</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.pulse}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Systolic Blood Pressure</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.systolic_blood_pressure}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Diastolic Blood Pressure</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.diastolic_blood_pressure}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Pulse Oximetry</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.pulse_oximetry}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Temperature</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.temperature}}</p>
+          </div>   
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Physical Exam</label>
+          </div>
+          <div class="col-md-6">
+            <p>{{sub.physical_exam}}</p>
+          </div>   
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+              <label>Additional Information</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{sub.more}}</p>
+            </div>   
+          </div>
+
+
+
+
+          </div>
+          <div class="card-footer text-muted">
+            Submitted to the physicians on {{sub.created}}
+          </div>
+        </div>
+    
+{% empty %}
+
+<p>No submissions yet.</p>
+    {% endfor %}
+<hr>
+
+  </div>
+<hr>
+    
+
+
+
+
+  </div>
+
+  </div>
+  <!-- /.container -->
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

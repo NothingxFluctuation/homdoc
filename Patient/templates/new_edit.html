@@ -47,6 +47,8 @@
               <a class="nav-link" href="{% url 'login' %}">Login</a>
               {% endif %}
           </li>
+
+          
         </ul>
       </div>
     </div>
@@ -62,16 +64,17 @@
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
-      <li class="breadcrumb-item active">Chest Pain</li>
+      <li class="breadcrumb-item active">Profile Edit</li>
     </ol>
 
 <div>
 
-    <p>Please use the given form to send us your Chest Pain details:</p>
+    <p>You can edit your account using the following form:</p>
     <form action="." method="post" enctype="multipart/form-data">
-      {{ chest_pain_form.as_p }}
+      {{ user_form.as_p }}
+      {{ profile_form.as_p }}
       {% csrf_token %}
-      <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+      <button type="submit" class="btn btn-primary" id="sendMessageButton">Save</button>
     </form>
 </div>
 <br>
@@ -86,7 +89,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">HomDoc &copy; 2019</p>
+      <p class="m-0 text-center text-white">ProjectCappuchino &copy; 2019</p>
     </div>
     <!-- /.container -->
   </footer>
