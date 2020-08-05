@@ -12,7 +12,7 @@ Install the dependencies and start the server.
 
 ```sh
 $ pip install -r requirements.txt
-$ cd ruangilmo
+$ cd homdoc
 $ python manage.py runserver
 ```
 
